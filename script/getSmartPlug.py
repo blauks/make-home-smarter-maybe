@@ -28,8 +28,6 @@ while True:
 
     if not response == None: 
         data.update(response['dps'])
-    
-    print(response)
 
     date = datetime.datetime.now()
     energyData = {str(date) : {"mA": data['18'], "W": data['19']}}
@@ -67,6 +65,6 @@ while True:
     print("Power: " + str(data['19']))
     print("----------------------------")
     
-    time.sleep(600)
+    time.sleep(5)
 
     payload = device.generate_payload(tinytuya.UPDATEDPS)
