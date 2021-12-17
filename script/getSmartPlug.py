@@ -13,7 +13,7 @@ device.set_version(3.3)
 device.set_socketPersistent(True)
 
 historicData = {}
-readHistoricDataFile = open("historic.json", "r")
+readHistoricDataFile = open("../frontend/src/data/historic.json", "r")
 
 try:
     historicData = json.loads(readHistoricDataFile.read())
@@ -55,7 +55,7 @@ while True:
         if len(historicData[str(int(year)-1)]) < 1:
             del historicData[str(int(year)-1)]
 
-    writeHistoricDataFile = open("historic.json", "w")
+    writeHistoricDataFile = open("../frontend/src/data/historic.json", "w")
     writeHistoricDataFile.write(json.dumps(historicData, indent=4, sort_keys=True))
     writeHistoricDataFile.close()
 
