@@ -40,7 +40,6 @@ const App = () => {
   };
 
   const recieveHistoricData = async () => {
-    // Skal bare bli brukt på lokalnettet
     let resp = await fetch("http://localhost:1337/historic.json");
     await resp.json().then((data) => setHistoricData(data));
   };
@@ -58,7 +57,7 @@ const App = () => {
       </div>
     </DataContext.Provider>
   ) : (
-    <p>Loading</p>
+    <p>Data not found</p>
   );
 };
 
