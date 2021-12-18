@@ -63,7 +63,7 @@ const Chart = () => {
         <Select
           name="year"
           chosen={context.data.year}
-          list={availableYears()}
+          list={availableYears(context.historicData)}
           changeState={updateYear}
         />
 
@@ -71,7 +71,10 @@ const Chart = () => {
           <Select
             name="month"
             chosen={context.data.month}
-            list={availableMonthsForYear(context.data.year)}
+            list={availableMonthsForYear(
+              context.data.year,
+              context.historicData
+            )}
             changeState={updateMonth}
           />
         )}
@@ -80,7 +83,11 @@ const Chart = () => {
           <Select
             name="day"
             chosen={context.data.day}
-            list={availableDaysForMonth(context.data.year, context.data.month)}
+            list={availableDaysForMonth(
+              context.data.year,
+              context.data.month,
+              context.historicData
+            )}
             changeState={updateDay}
           />
         )}

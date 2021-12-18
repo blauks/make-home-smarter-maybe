@@ -35,11 +35,16 @@ const Chart = () => {
             ? getDataForDay(
                 context.data.year,
                 context.data.month,
-                context.data.day
+                context.data.day,
+                context.historicData
               )
             : context.data.timeInterval === TimeInterval.MONTHLY
-            ? getDataForMonth(context.data.year, context.data.month)
-            : getDataForYear(context.data.year)
+            ? getDataForMonth(
+                context.data.year,
+                context.data.month,
+                context.historicData
+              )
+            : getDataForYear(context.data.year, context.historicData)
         }
         margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
       >
