@@ -30,7 +30,7 @@ while True:
         data.update(response['dps'])
 
     date = datetime.datetime.now()
-    energyData = {str(date) : {"mA": data['18'], "W": data['19']}}
+    energyData = {"date": str(date), "mA": data['18'], "W": float(data['19']/10)}
     
     year = date.strftime("%Y")
     month = date.strftime("%B")
@@ -62,7 +62,7 @@ while True:
     print("------- CURRENT DATA -------")
     print("Time: " + str(datetime.datetime.now()))
     print("Current: " + str(data['18']))
-    print("Power: " + str(data['19']))
+    print("Power: " + str(float(data['19']/10)))
     print("----------------------------")
     
     time.sleep(5)
