@@ -41,7 +41,7 @@ const App = () => {
 
   const recieveHistoricData = async () => {
     // Skal bare bli brukt på lokalnettet
-    let resp = await fetch("http://192.168.1.44:1337/historic.json");
+    let resp = await fetch("http://localhost:1337/historic.json");
     await resp.json().then((data) => setHistoricData(data));
   };
 
