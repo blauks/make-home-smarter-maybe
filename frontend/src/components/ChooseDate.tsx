@@ -35,7 +35,7 @@ const Chart = () => {
   };
 
   return (
-    <div className="flex flex-col items-center w-64 text-center">
+    <div className="flex flex-col items-center w-64 h-full text-center">
       <div className="w-full">
         <h1 className="text-xl">Choose time interval:</h1>
         <div className="flex justify-around">

@@ -54,11 +54,13 @@ const App = () => {
   return Object.keys(historicData).length >= 1 ? (
     <DataContext.Provider value={{ data, updateData, historicData }}>
       <div className="flex flex-col items-center justify-center h-full lg:flex-row">
-        <div className="flex flex-col justify-around h-1/3">
+        <div className="flex flex-col justify-around lg:h-1/3">
           <ChooseDate />
           <Statistics />
         </div>
-        <Chart />
+        <div className="flex justify-center w-full h-4/5">
+          <Chart />
+        </div>
       </div>
     </DataContext.Provider>
   ) : (
