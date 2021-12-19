@@ -2,21 +2,11 @@ import tinytuya
 import json
 import datetime
 import time
-import urllib
 
 # Devices file is generated with python -m tinytuya wizard
 devicesFile = open("devices.json", "r")
 devices = json.load(devicesFile)
 devicesFile.close()
-
-def is_internet(host='http://google.com'):
-    try:
-        urllib.request.urlopen(host) #Python 3.x
-        return True
-    except:
-        return False
-
-while not is_internet(): continue
 
 device = tinytuya.OutletDevice(devices[0]["id"], "0.0.0.0", devices[0]["key"])
 device.set_version(3.3)
