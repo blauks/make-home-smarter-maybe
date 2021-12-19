@@ -27,7 +27,7 @@ while True:
     response = device.receive()
 
     if not response == None: 
-        data.update(response['dps'])
+        data.update(response.get('dps', {}))
 
     date = datetime.datetime.now()
     energyData = {"date": str(date), "mA": data['18'], "W": float(data['19']/10)}
