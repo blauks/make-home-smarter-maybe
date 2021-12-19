@@ -40,7 +40,8 @@ const App = () => {
   };
 
   const recieveHistoricData = async () => {
-    let resp = await fetch("http://localhost:1337/historic.json");
+    // Raspberry pi IP
+    let resp = await fetch("http://192.168.1.44:1337/historic.json");
     await resp.json().then((data) => setHistoricData(data));
   };
 
