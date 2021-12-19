@@ -16,13 +16,13 @@ import {
   getDataForYear,
 } from "../util/historicDataTool";
 import { TimeInterval } from "./ChooseDate";
-import { format } from "date-fns";
+import { format, parseISO } from "date-fns";
 
 const Chart = () => {
   const context = useContext(DataContext);
 
   const formatXAxisDay = (tick: string) => {
-    return format(new Date(tick), "HH:mm");
+    return format(new Date(parseISO(tick)), "HH:mm");
   };
 
   return (
