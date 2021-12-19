@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { format } from "date-fns";
 import ChooseDate, { TimeInterval } from "./components/ChooseDate";
 import Chart from "./components/Chart";
+import Statistics from "./components/Statistics";
 
 type DataStateType = {
   timeInterval: TimeInterval;
@@ -53,7 +54,10 @@ const App = () => {
   return Object.keys(historicData).length >= 1 ? (
     <DataContext.Provider value={{ data, updateData, historicData }}>
       <div className="flex flex-col items-center justify-center h-full lg:flex-row">
-        <ChooseDate />
+        <div className="flex flex-col justify-around h-1/3">
+          <ChooseDate />
+          <Statistics />
+        </div>
         <Chart />
       </div>
     </DataContext.Provider>

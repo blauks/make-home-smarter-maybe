@@ -60,8 +60,24 @@ const Chart = () => {
         <YAxis />
         <Tooltip />
         <Legend />
-        <Line type="monotone" dataKey="W" stroke="#8884d8" />
-        <Line type="monotone" dataKey="mA" stroke="#82ca9d" />
+        <Line
+          type="monotone"
+          dataKey="W"
+          name={
+            context.data.timeInterval === TimeInterval.DAILY ? "W" : "Average W"
+          }
+          stroke="#8884d8"
+        />
+        <Line
+          type="monotone"
+          dataKey="mA"
+          name={
+            context.data.timeInterval === TimeInterval.DAILY
+              ? "mA"
+              : "Average mA"
+          }
+          stroke="#82ca9d"
+        />
       </LineChart>
     </ResponsiveContainer>
   );

@@ -38,16 +38,11 @@ export const getDataForMonth = (
   historicData: Object
 ) => {
   return Object.keys(historicData[year][month]["days"]).map((el) => {
+    const average = averageForDay(year, month, el, historicData);
     return {
       date: el,
-      W: historicData[year][month]["days"][el].reduce(
-        (tot: number, cur: number) => tot + cur["W"],
-        0
-      ),
-      mA: historicData[year][month]["days"][el].reduce(
-        (tot: number, cur: number) => tot + cur["mA"],
-        0
-      ),
+      W: parseFloat(average.avgW),
+      mA: parseFloat(average.avgmA),
     };
   });
 };
@@ -56,14 +51,64 @@ export const getDataForYear = (year: string, historicData: Object) => {
   return Object.keys(historicData[year]).map((el) => {
     return {
       date: el,
-      W: getDataForMonth(year, el, historicData).reduce(
-        (tot: number, cur: Object) => tot + cur["W"],
-        0
+      W: parseFloat(
+        getDataForMonth(year, el, historicData)
+          .reduce((tot: number, cur: Object) => tot + cur["W"], 0)
+          .toFixed(2)
       ),
-      mA: getDataForMonth(year, el, historicData).reduce(
-        (tot: number, cur: Object) => tot + cur["mA"],
-        0
+      mA: parseFloat(
+        getDataForMonth(year, el, historicData)
+          .reduce((tot: number, cur: Object) => tot + cur["mA"], 0)
+          .toFixed(2)
       ),
     };
   });
+};
+
+export const averageForDay = (
+  year: string,
+  month: string,
+  day: string,
+  historicData: Object
+) => {
+  // Or D-Day for short :)
+  const dataDay = getDataForDay(year, month, day, historicData);
+  return {
+    avgW: averageW(dataDay),
+    avgmA: averageMA(dataDay),
+  };
+};
+
+export const averageForMonth = (
+  year: string,
+  month: string,
+  historicData: Object
+) => {
+  const dMonth = getDataForMonth(year, month, historicData);
+  return {
+    avgW: averageW(dMonth),
+    avgmA: averageMA(dMonth),
+  };
+};
+
+export const averageForYear = (year: string, historicData: Object) => {
+  const dYear = getDataForYear(year, historicData);
+  return {
+    avgW: averageW(dYear),
+    avgmA: averageMA(dYear),
+  };
+};
+
+const averageW = (data: Array<Object>) => {
+  return (
+    data.reduce((tot: number, cur: Object) => tot + cur["W"], 0) /
+    Object.keys(data).length
+  ).toFixed(2);
+};
+
+const averageMA = (data: Array<Object>) => {
+  return (
+    data.reduce((tot: number, cur: Object) => tot + cur["mA"], 0) /
+    Object.keys(data).length
+  ).toFixed(2);
 };
