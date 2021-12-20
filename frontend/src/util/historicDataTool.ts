@@ -49,18 +49,11 @@ export const getDataForMonth = (
 
 export const getDataForYear = (year: string, historicData: Object) => {
   return Object.keys(historicData[year]).map((el) => {
+    const average = averageForMonth(year, el, historicData);
     return {
       date: el,
-      W: parseFloat(
-        getDataForMonth(year, el, historicData)
-          .reduce((tot: number, cur: Object) => tot + cur["W"], 0)
-          .toFixed(2)
-      ),
-      mA: parseFloat(
-        getDataForMonth(year, el, historicData)
-          .reduce((tot: number, cur: Object) => tot + cur["mA"], 0)
-          .toFixed(2)
-      ),
+      W: parseFloat(average.avgW),
+      mA: parseFloat(average.avgmA),
     };
   });
 };
@@ -93,6 +86,7 @@ export const averageForMonth = (
 
 export const averageForYear = (year: string, historicData: Object) => {
   const dYear = getDataForYear(year, historicData);
+  console.log(dYear);
   return {
     avgW: averageW(dYear),
     avgmA: averageMA(dYear),
