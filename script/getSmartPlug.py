@@ -67,4 +67,4 @@ while True:
     
     time.sleep(5)
 
-    payload = device.generate_payload(tinytuya.UPDATEDPS)
+    payload = device.generate_payload(tinytuya.DP_QUERY)
