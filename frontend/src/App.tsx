@@ -23,7 +23,7 @@ const defaultDataState = {
   timeInterval: TimeInterval.DAILY,
   year: format(today, "yyyy"),
   month: format(today, "LLLL"),
-  day: format(today, "d"),
+  day: format(today, "dd"),
 };
 
 export const DataContext = React.createContext<DataContextType>({
