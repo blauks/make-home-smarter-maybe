@@ -23,11 +23,27 @@ const Chart = () => {
   };
 
   const updateYear = (year: string) => {
-    context.updateData({ ...context.data, year });
+    const newMonth = Object.keys(context.historicData[year])[0];
+    const newDay = Object.keys(context.historicData[year][newMonth]["days"])[0];
+
+    context.updateData({
+      ...context.data,
+      year,
+      month: newMonth,
+      day: newDay,
+    });
   };
 
   const updateMonth = (month: string) => {
-    context.updateData({ ...context.data, month });
+    const newDay = Object.keys(
+      context.historicData[context.data.year][month]["days"]
+    )[0];
+
+    context.updateData({
+      ...context.data,
+      month,
+      day: newDay,
+    });
   };
 
   const updateDay = (day: string) => {
